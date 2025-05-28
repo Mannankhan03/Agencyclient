@@ -1,0 +1,22 @@
+
+.sidebar-container a {
+  text-decoration: none;
+
+  margin-top: 10px;
+  padding: 10px 0px;
+  width: 166px;
+  height: 16px;
+  font-family: "Segoe UI", sans-serif;
+  font-size: 16px;
+  display: block;
+}
+
+.sidebar-container a:hover {
+  color: #000;
+}
+
+.sidebar-container a.active {
+  font-weight: bold;
+  height: 50px;
+  color: #000;
+}
