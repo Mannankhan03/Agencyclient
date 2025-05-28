@@ -83,7 +83,7 @@ const Updateclient = () => {
             ) : (
               <tr>
                 <td colSpan="6" style={{ textAlign: "center" }}>
-                  No agency-client data found.
+                  No agency/client data found.
                 </td>
               </tr>
             )}
