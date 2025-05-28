@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { Admincontext } from "../Context/AdminContext";
-import "./UpdateClient.css";
+import "./Updateclient.css";
 
 const Updateclient = () => {
   const { aToken } = useContext(Admincontext);
