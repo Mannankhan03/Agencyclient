@@ -1,22 +1,92 @@
 
-.sidebar-container a {
-  text-decoration: none;
+.sidebar-container {
+  width: 250px;
+  background-color: #f9faff;
+  padding: 20px;
+  height: 100vh;
+  transition: transform 0.3s ease;
+  z-index: 1000;
+}
 
-  margin-top: 10px;
-  padding: 10px 0px;
-  width: 166px;
-  height: 16px;
-  font-family: "Segoe UI", sans-serif;
-  font-size: 16px;
+
+.sidebar-container a {
   display: block;
+  text-decoration: none;
+  font-size: 16px;
+  padding: 10px 12px;
+  margin-top: 10px;
+  color: #333;
+  font-family: "Segoe UI", sans-serif;
+  border-radius: 6px;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .sidebar-container a:hover {
+  background-color: #e6f0ff;
   color: #000;
 }
 
 .sidebar-container a.active {
   font-weight: bold;
-  height: 50px;
+  background-color: #cce0ff;
   color: #000;
+}
+
+
+.sidebar-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+  z-index: 999;
+  display: none;
+}
+
+.sidebar-overlay.active {
+  display: block;
+}
+
+.sidebar-toggle-btn {
+  position: sticky;
+  top: 15px;
+  left: 15px;
+
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: 8px 12px;
+  cursor: pointer;
+  display: none;
+}
+
+
+@media (min-width: 769px) {
+  .sidebar-container {
+    transform: translateX(0);
+    position: static;
+    height: 100vh;
+  }
+}
+
+
+@media (max-width: 768px) {
+  .sidebar-toggle-btn {
+    display: block;
+  }
+
+  .sidebar-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    transform: translateX(-100%);
+    box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+  }
+
+  .sidebar-container.open {
+    transform: translateX(0);
+  }
 }

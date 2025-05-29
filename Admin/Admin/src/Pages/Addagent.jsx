@@ -24,17 +24,19 @@ export default function AddAgencyClientForm() {
   const [clientPhone, setClientPhone] = useState("");
   const [totalBill, setTotalBill] = useState("");
 
-  // Prefill data if editing
   useEffect(() => {
     const fetchExistingData = async () => {
       if (agencyId && clientId) {
         try {
-          const res = await axios.get(`http://localhost:4000/api/get-client-agency`, {
-            headers: {
-              "Content-Type": "application/json",
-              aToken,
-            },
-          });
+          const res = await axios.get(
+            `http://localhost:4000/api/get-client-agency`,
+            {
+              headers: {
+                "Content-Type": "application/json",
+                aToken,
+              },
+            }
+          );
 
           if (res.data.success) {
             const { agencies, clients } = res.data;
@@ -68,25 +70,26 @@ export default function AddAgencyClientForm() {
     fetchExistingData();
   }, [agencyId, clientId, aToken]);
 
- const handleSubmit = async (e) => {
-  e.preventDefault();
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
-  const isEmpty = (val) => val === undefined || val === null || val.toString().trim() === "";
+    const isEmpty = (val) =>
+      val === undefined || val === null || val.toString().trim() === "";
 
-  if (
-    isEmpty(name) ||
-    isEmpty(address1) ||
-    isEmpty(state) ||
-    isEmpty(city) ||
-    isEmpty(phone) ||
-    isEmpty(clientName) ||
-    isEmpty(email) ||
-    isEmpty(clientPhone) ||
-    isEmpty(totalBill)
-  ) {
-    toast.error("Please fill all required fields");
-    return;
-  }
+    if (
+      isEmpty(name) ||
+      isEmpty(address1) ||
+      isEmpty(state) ||
+      isEmpty(city) ||
+      isEmpty(phone) ||
+      isEmpty(clientName) ||
+      isEmpty(email) ||
+      isEmpty(clientPhone) ||
+      isEmpty(totalBill)
+    ) {
+      toast.error("Please fill all required fields");
+      return;
+    }
 
     const agencyclientData = {
       name,
@@ -98,42 +101,39 @@ export default function AddAgencyClientForm() {
       clientName,
       email,
       clientPhone,
-       totalBill: Number(totalBill),
+      totalBill: Number(totalBill),
     };
 
     try {
       let response;
 
       if (agencyId && clientId) {
-  // EDIT MODE → PUT
-  response = await axios.put(
-    `http://localhost:4000/api/update-client/${agencyId}/${clientId}`,
-    {
-      agency: {
-        name,
-        address1,
-        address2,
-        state,
-        city,
-        phone,
-      },
-      client: {
-        name: clientName,
-        email,
-        phoneNumber: clientPhone, 
-        totalBill: Number(totalBill),
-      },
-    },
-    {
-      headers: {
-        "Content-Type": "application/json",
-        aToken,
-      },
-    }
-  );
-
+        response = await axios.put(
+          `http://localhost:4000/api/update-client/${agencyId}/${clientId}`,
+          {
+            agency: {
+              name,
+              address1,
+              address2,
+              state,
+              city,
+              phone,
+            },
+            client: {
+              name: clientName,
+              email,
+              phoneNumber: clientPhone,
+              totalBill: Number(totalBill),
+            },
+          },
+          {
+            headers: {
+              "Content-Type": "application/json",
+              aToken,
+            },
+          }
+        );
       } else {
-        // CREATE MODE → POST
         response = await axios.post(
           "http://localhost:4000/api/create-agency-client",
           agencyclientData,
@@ -150,8 +150,6 @@ export default function AddAgencyClientForm() {
 
       if (data.success) {
         toast.success(data.message || "Operation Successful");
-
-        // Clear form
         setName("");
         setAddress1("");
         setAddress2("");
@@ -173,24 +171,70 @@ export default function AddAgencyClientForm() {
 
   return (
     <form className="form-container" onSubmit={handleSubmit}>
-      <h2>{agencyId && clientId ? "Update Agency and Client" : "Create Agency and Client"}</h2>
+      <h2>
+        {agencyId && clientId
+          ? "Update Agency and Client"
+          : "Create Agency and Client"}
+      </h2>
 
       <div className="section">
         <h3>Agency Details</h3>
-        <input placeholder="Agency Name" value={name} onChange={(e) => setName(e.target.value)} />
-        <input placeholder="Address 1" value={address1} onChange={(e) => setAddress1(e.target.value)} />
-        <input placeholder="Address 2" value={address2} onChange={(e) => setAddress2(e.target.value)} />
-        <input placeholder="State" value={state} onChange={(e) => setState(e.target.value)} />
-        <input placeholder="City" value={city} onChange={(e) => setCity(e.target.value)} />
-        <input placeholder="Phone" value={phone} onChange={(e) => setPhone(e.target.value)} />
+        <input
+          placeholder="Agency Name"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+        />
+        <input
+          placeholder="Address 1"
+          value={address1}
+          onChange={(e) => setAddress1(e.target.value)}
+        />
+        <input
+          placeholder="Address 2"
+          value={address2}
+          onChange={(e) => setAddress2(e.target.value)}
+        />
+        <input
+          placeholder="State"
+          value={state}
+          onChange={(e) => setState(e.target.value)}
+        />
+        <input
+          placeholder="City"
+          value={city}
+          onChange={(e) => setCity(e.target.value)}
+        />
+        <input
+          placeholder="Phone"
+          value={phone}
+          onChange={(e) => setPhone(e.target.value)}
+        />
       </div>
 
       <div className="section">
         <h3>Client Details</h3>
-        <input placeholder="Client Name" value={clientName} onChange={(e) => setClientName(e.target.value)} />
-        <input placeholder="Email" type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
-        <input placeholder="Client Phone" value={clientPhone} onChange={(e) => setClientPhone(e.target.value)} />
-        <input placeholder="Total Bill" type="number" value={totalBill} onChange={(e) => setTotalBill(e.target.value)} />
+        <input
+          placeholder="Client Name"
+          value={clientName}
+          onChange={(e) => setClientName(e.target.value)}
+        />
+        <input
+          placeholder="Email"
+          type="email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+        />
+        <input
+          placeholder="Client Phone"
+          value={clientPhone}
+          onChange={(e) => setClientPhone(e.target.value)}
+        />
+        <input
+          placeholder="Total Bill"
+          type="number"
+          value={totalBill}
+          onChange={(e) => setTotalBill(e.target.value)}
+        />
       </div>
 
       <button type="submit" className="submit-button">

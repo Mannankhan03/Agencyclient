@@ -1,26 +1,33 @@
-/* Import Poppins font */
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap");
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Poppins", sans-serif;
+  background-color: #f5f6fa;
+}
 
 .agency-container {
   padding: 30px;
-  font-family: 'Poppins', sans-serif;
-  background-color: #f5f6fa;
   min-height: 100vh;
+  box-sizing: border-box;
 }
 
 .agency-heading {
   text-align: center;
-  font-size: 28px;
+  font-size: 24px;
   color: #2c3e50;
   margin-bottom: 30px;
 }
 
 .agency-table-wrapper {
   overflow-x: auto;
+  width: 100%;
 }
 
 .agency-table {
   width: 100%;
+  min-width: 800px;
   border-collapse: separate;
   border-spacing: 0 10px;
 }
@@ -29,8 +36,8 @@
   background-color: #007bff;
   color: white;
   padding: 12px;
-  text-align: left;
-  border-radius: 0px 0px 0 0;
+  text-align: center;
+  white-space: nowrap;
 }
 
 .agency-table td {
@@ -38,6 +45,7 @@
   padding: 12px;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
   border-bottom: 1px solid #ecf0f1;
+  white-space: nowrap;
 }
 
 .agency-table tr {
@@ -54,7 +62,7 @@
   padding: 16px;
   background-color: #fff;
   border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   color: #7f8c8d;
 }
 
@@ -63,9 +71,86 @@
   font-size: 20px;
   margin-top: 100px;
   color: #34495e;
-  font-family: 'Poppins', sans-serif;
 }
 
-::-webkit-scrollbar{
+.agency-table-wrapper::-webkit-scrollbar {
+  display: none;
+}
+.agency-table-wrapper {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+@media (max-width: 768px) {
+  .agency-container {
+    padding: 20px 15px;
+  }
+
+  .agency-heading {
+    font-size: 24px;
+  }
+
+  .agency-table th,
+  .agency-table td {
+    padding: 10px;
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .agency-heading {
+    font-size: 20px;
+    margin-bottom: 20px;
+    display: block;
+  }
+
+  .agency-container {
+    padding: 20px 0px;
+  }
+
+  .agency-table-wrapper {
+    overflow-x: visible;
+  }
+
+  .agency-table {
+    display: block;
+    min-width: 0;
+  }
+
+  .agency-table thead {
     display: none;
+  }
+
+  .agency-table tr {
+    display: block;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    background: #fff;
+    border-radius: 8px;
+    padding: 10px;
+    width: 297px;
+  }
+
+  .agency-table td {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 14px;
+    font-size: 14px;
+    border: none;
+    border-bottom: 1px solid #f0f0f0;
+    white-space: normal;
+  }
+
+  .agency-table td::before {
+    font-weight: 600;
+    color: #2c3e50;
+    margin-right: 10px;
+    flex-shrink: 0;
+    width: 120px;
+  }
+
+  .agency-loading {
+    font-size: 16px;
+  }
 }

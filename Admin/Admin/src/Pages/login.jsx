@@ -37,7 +37,7 @@ const Login = () => {
 
   return (
     <div className="admin-background-image">
-      <form onSubmit={onSubmithandler}>
+      <form className="login-form" onSubmit={onSubmithandler}>
         <div className="login-form-container">
           <h2>Login</h2>
           <div className="login-form-input">
@@ -58,7 +58,9 @@ const Login = () => {
               onChange={(e) => setPassword(e.target.value)}
             />
           </div>
-          <button type="submit" className="login-button">Login</button>
+          <button type="submit" className="login-button">
+            Login
+          </button>
         </div>
       </form>
     </div>

@@ -2,7 +2,7 @@ import React, { useEffect, useState, useContext } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { Admincontext } from "../Context/AdminContext";
-import "../Pages/Topclients.css"
+import "../Pages/Topclients.css";
 
 export default function AgencyClientList() {
   const { aToken } = useContext(Admincontext);
@@ -12,7 +12,7 @@ export default function AgencyClientList() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await axios.get(
+        const { data } = await axios.get(
           "http://localhost:4000/api/get-client-agency",
           {
             headers: {
@@ -22,11 +22,12 @@ export default function AgencyClientList() {
           }
         );
 
-        if (res.data.success) {
-          const { agencies, clients } = res.data;
+        if (data.success) {
+          const { agencies, clients } = data;
 
           const combineddata = clients.map((client) => {
-            const agency = agencies.find((a) => a._id === client.agencyId) || {};
+            const agency =
+              agencies.find((agency) => agency._id === client.agencyId) || {};
             return {
               clientId: client._id,
               clientName: client.name,
@@ -55,12 +56,14 @@ export default function AgencyClientList() {
   }, [aToken]);
 
   if (loading) {
-    return <div className="agency-loading">Loading...</div>;
+    return <div className="agency-client-loading">Loading...</div>;
   }
 
   return (
     <div className="agency-container">
-      <h2 className="agency-heading">Agency Client List (Sorted by Total Bill)</h2>
+      <h2 className="agency-heading">
+        Agency Client List (Sorted by Total Bill)
+      </h2>
       <div className="agency-table-wrapper">
         <table className="agency-table">
           <thead>
@@ -75,7 +78,9 @@ export default function AgencyClientList() {
           <tbody>
             {clientsWithAgency.length === 0 ? (
               <tr>
-                <td colSpan={5} className="no-data">No clients found.</td>
+                <td colSpan={5} className="no-data">
+                  No clients found.
+                </td>
               </tr>
             ) : (
               clientsWithAgency.map((item) => (

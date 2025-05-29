@@ -1,11 +1,11 @@
 import { createContext, useState, useEffect } from "react";
 import { toast } from "react-toastify";
-import { jwtDecode } from "jwt-decode"; 
+import { jwtDecode } from "jwt-decode";
 import { useNavigate } from "react-router-dom";
 
 export const Admincontext = createContext();
 
-// we can add all APIs here itself for re-usable in all components
+// we can add all APIs here itself for re-usable in all components but for time being i have stored token
 
 const AdmincontextProvider = (props) => {
   const navigate = useNavigate();

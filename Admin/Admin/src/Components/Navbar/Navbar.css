@@ -1,4 +1,43 @@
-.Navbar-container{
-     padding-left: 50px;
-     height: 100px;
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+.navbar-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #ffffff;
+  padding: 10px 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  font-family: 'Poppins', sans-serif;
+}
+  .logo-img{
+     padding-left: 30px;
+     padding-top: 30px;
+  }
+
+.nav-heading-container img {
+  height: 40px;
+  max-width: 100%;
+  padding-top: 100px;
+}
+
+
+@media (max-width: 768px) {
+  .navbar-container {
+    padding: 8px 16px;
+  }
+
+  .nav-heading-container img {
+    height: 36px;
+  }
+}
+
+@media (max-width: 480px) {
+  .nav-heading-container img {
+    height: 32px;
+    
+  }
+  .logo-img{
+     margin-left: 40px;
+  }
 }

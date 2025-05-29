@@ -12,15 +12,12 @@ const Updateclient = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await axios.get(
-          "http://localhost:4000/api/get-client-agency",
-          {
-            headers: {
-              "Content-Type": "application/json",
-              aToken,
-            },
-          }
-        );
+        const res = await axios.get("http://localhost:4000/api/get-client-agency", {
+          headers: {
+            "Content-Type": "application/json",
+            aToken,
+          },
+        });
 
         if (res.data.success) {
           const { agencies, clients } = res.data;
@@ -35,7 +32,7 @@ const Updateclient = () => {
           console.error("Data fetch failed:", res.data);
         }
       } catch (error) {
-        console.error("Error fetching :", error);
+        console.error("Error fetching:", error);
       }
     };
 
@@ -49,7 +46,7 @@ const Updateclient = () => {
   return (
     <div className="update-client-container">
       <h2>Agency & Client List</h2>
-      <div className="table-wrapper">
+      <div className="table-responsive">
         <table className="styled-table">
           <thead>
             <tr>
@@ -64,7 +61,7 @@ const Updateclient = () => {
           <tbody>
             {data && data.length > 0 ? (
               data.map(({ agency, client }) => (
-                <tr key={`${agency?._id}-${client?._id}`}>
+                <tr className="table-row-data" key={`${agency?._id}-${client?._id}`}>
                   <td>{agency?.name || "N/A"}</td>
                   <td>{client?.name || "N/A"}</td>
                   <td>{agency?.state || "N/A"}</td>

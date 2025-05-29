@@ -1,8 +1,8 @@
 import "./App.css";
 import Navbar from "./Components/Navbar/Navbar";
 import Sidebar from "./Components/Sidebar/Sidebar";
-import { Routes, Route } from "react-router-dom";
-import Addagent from "./Pages/Addagent"; // this is your AddAgencyClientForm
+import { Routes, Route, useLocation } from "react-router-dom";
+import Addagent from "./Pages/Addagent";
 import Updateclient from "./Pages/Updateclient";
 import Topclients from "./Pages/Topclients";
 import { Admincontext } from "./Context/AdminContext";
@@ -13,20 +13,37 @@ import { useContext } from "react";
 
 function App() {
   const { aToken } = useContext(Admincontext);
+  const location = useLocation();
+
+  const isRootPage = location.pathname === "/";
 
   return aToken ? (
     <>
       <ToastContainer position="top-right" autoClose={3000} />
       <Navbar />
-      <div className="flex items-start">
+      <div className="app-layout">
         <Sidebar />
-        <Routes>
-          <Route path="/add-agent-client" element={<Addagent />} />
-          <Route path="/add-agent-client/:agencyId/:clientId" element={<Addagent />} />
-          <Route path="/update-clients-agents" element={<Updateclient />} />
-          <Route path="/update-clients-agents/:agencyId/:clientId" element={<Addagent />} />
-          <Route path="/top-clients" element={<Topclients />} />
-        </Routes>
+        <div className="main-content">
+          {isRootPage && (
+            <div className="dashboard-message">
+              <h3>Please Click on toggle button to view options</h3>
+            </div>
+          )}
+
+          <Routes>
+            <Route path="/add-agent-client" element={<Addagent />} />
+            <Route
+              path="/add-agent-client/:agencyId/:clientId"
+              element={<Addagent />}
+            />
+            <Route path="/update-clients-agents" element={<Updateclient />} />
+            <Route
+              path="/update-clients-agents/:agencyId/:clientId"
+              element={<Addagent />}
+            />
+            <Route path="/top-clients" element={<Topclients />} />
+          </Routes>
+        </div>
       </div>
     </>
   ) : (
