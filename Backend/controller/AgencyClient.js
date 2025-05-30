@@ -81,12 +81,12 @@ const UpdateClientAgency = async (req, res) => {
     const { agencyId, clientId } = req.params;
     const { agency, client } = req.body;
 
-    // Basic check
+ 
     if (!agency || !client) {
       return res.status(400).json({ success: false, message: "Missing data" });
     }
 
-    // Destructure agency and client data
+    
     const { name, address1, address2, state, city, phone } = agency;
     const { name: clientName, email, phoneNumber, totalBill } = client;
 

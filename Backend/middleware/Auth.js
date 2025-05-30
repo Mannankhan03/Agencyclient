@@ -16,7 +16,7 @@ const Authadmin = async (req,res,next) =>{
             return res.status(403).json({ success: false, message: "Forbidden. Admin access only." });
           }
       
-          req.admin = decoded; // you can access this later
+          req.admin = decoded; 
           next();
     } catch (error) {
         if (error.name === "TokenExpiredError") {

@@ -3,6 +3,8 @@ import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import userschema from "../model/Usermodel.js";
 
+// we can use this logic for both admin login as weell as user
+
 const registerUser = async (req, res) => {
   try {
     const { userName, email, password } = req.body;
